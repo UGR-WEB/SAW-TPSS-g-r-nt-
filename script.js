@@ -250,7 +250,71 @@ function loadQuestion() {
     questionImage.addEventListener('click', (event) => markOnImage(event)); // Resme tıklanması durumunda işaretleme yapılacak
     startTimer();
 }
+const timerButton = document.getElementById('timer-button'); // Zamanlayıcıyı barındıracak buton
 
+function startTimer() {
+    timeLeft = 25; // 25 saniye
+    updateTimerButton(timeLeft); // Başlangıç zamanını butona yazdırıyoruz
+
+    // Timer'ı her saniye güncelliyoruz
+    timer = setInterval(() => {
+        timeLeft--; // Zamanı bir azaltıyoruz
+        updateTimerButton(timeLeft); // Ekranda gösteriyoruz
+
+        // Son 10 saniye için yanıp sönme efekti
+        if (timeLeft <= 10) {
+            timerButton.classList.add('flashing'); // Yanıp sönme efekti ekliyoruz
+        } else {
+            timerButton.classList.remove('flashing'); // Yanıp sönme efekti kaldırıyoruz
+        }
+
+        if (timeLeft <= 0) {
+            clearInterval(timer); // Zaman bitince timer'ı temizliyoruz
+            nextQuestion(); // Otomatik olarak bir sonraki soruya geçiyoruz
+        }
+    }, 1000); // 1000 ms = 1 saniye
+}
+
+// Zamanlayıcıyı buton üzerinde güncelleyen fonksiyon
+function updateTimerButton(timeLeft) {
+    timerButton.textContent = timeLeft; // Butonun içindeki yazıyı güncelliyoruz
+
+    if (timeLeft <= 10) {
+        timerButton.style.backgroundColor = '#e74c3c'; // Kırmızı tonunda bir arka plan
+    } else {
+        timerButton.style.backgroundColor = '#3498db'; // Normalde mavi
+    }
+}
+
+// Soruları yüklerken eski zamanlayıcıyı temizleme
+function loadQuestion() {
+    clearInterval(timer); // Eski zamanlayıcıyı temizliyoruz
+    const question = quizData[currentLevel][currentQuestion];
+    questionImage.src = question.image;
+    optionsContainer.innerHTML = '';
+    markedPosition = null; // İşaretlemeyi sıfırlıyoruz
+    selectedAnswer = null; // Cevap sıfırlanıyor
+
+    // Yeni soruya geçildiğinde, önceki işaretlemeyi temizliyoruz
+    clearPreviousMark();
+
+    question.options.forEach(option => {
+        const optionButton = document.createElement('button');
+        optionButton.classList.add('option-button', 'bg-gray-200', 'hover:bg-blue-400', 'transition', 'p-3', 'rounded-lg', 'cursor-pointer');
+        optionButton.textContent = option;
+
+        optionButton.addEventListener('click', () => {
+            selectAnswer(optionButton, option);
+        });
+
+        optionsContainer.appendChild(optionButton);
+    });
+
+    questionImage.addEventListener('click', (event) => markOnImage(event)); // Resme tıklanması durumunda işaretleme yapılacak
+    startTimer(); // Yeni soruya başlamadan önce zamanlayıcıyı başlatıyoruz
+}
+
+// Cevap seçim fonksiyonu
 function selectAnswer(button, answer) {
     selectedAnswer = answer; // Seçilen cevabı kaydediyoruz
 
@@ -272,6 +336,7 @@ function selectAnswer(button, answer) {
     }
 }
 
+// Resim üzerine işaretleme yapılacak
 function markOnImage(event) {
     // Eğer cevap seçilmemişse, işaretleme yapılmasın
     if (!selectedAnswer) {
@@ -309,12 +374,14 @@ function markOnImage(event) {
     nextQuestion();
 }
 
+// Önceki işaretlemeleri temizleme
 function clearPreviousMark() {
     // Yeni soru yüklendiğinde, önceki işaretlemeyi temizliyoruz
     const markers = document.querySelectorAll('.marker');
     markers.forEach(marker => marker.remove()); // Var olan tüm işaretlemeleri kaldırıyoruz
 }
 
+// Sonraki soruya geçme fonksiyonu
 function nextQuestion() {
     currentQuestion++;
     setTimeout(() => {
@@ -326,6 +393,7 @@ function nextQuestion() {
     }, 1500); // 1.5 saniye sonra yeni soru
 }
 
+// Seviye geçişi için buton gösterme
 function showLevelUpButton() {
     if (score >= 70) {
         Swal.fire('Seviye Geçildi!', 'Başarıyla bu seviyeyi tamamladınız!', 'success');
@@ -338,6 +406,7 @@ function showLevelUpButton() {
     levelUpContainer.classList.remove('hidden');
 }
 
+// Seviye atlama fonksiyonu
 function levelUp() {
     currentLevel++;
     currentQuestion = 0;
