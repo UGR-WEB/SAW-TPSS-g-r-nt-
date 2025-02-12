@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Görüntülü Çoktan Seçmeli Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center">
+        <div id="quiz-container" class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md">
+            <h1 class="text-2xl font-bold mb-4 text-center">Görüntülü Çoktan Seçmeli Quiz</h1>
+            <div id="level-info" class="text-lg mb-2 text-center">Seviye: 1</div>
+            <div id="question-container">
+                <img id="question-image" src="" alt="Soru Resmi" class="w-full rounded-lg mb-4">
+                <div id="timer" class="text-lg font-semibold text-red-500 text-center">25</div>
+            </div>
+            <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            </div>
+            <div id="navigation-buttons" class="mt-4 text-center">
+                <button id="next-button" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">Sonraki Soru</button>
+            </div>
+            <div id="level-up-container" class="mt-4 text-center hidden">
+                <button id="level-up-button" class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition">Seviye Atla</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+</body>
+</html>
