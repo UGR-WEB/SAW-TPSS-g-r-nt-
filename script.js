@@ -5,7 +5,8 @@ const optionsContainer = document.getElementById('options-container');
 const nextButton = document.getElementById('next-button');
 const levelUpContainer = document.getElementById('level-up-container');
 const levelUpButton = document.getElementById('level-up-button');
-const timerDisplay = document.getElementById('timer');
+const timerButton = document.getElementById('timer-button'); // Zamanlayıcı butonu
+const finishQuizButton = document.getElementById('finish-quiz'); // Sınavı bitir butonu
 
 let currentLevel = 1;
 let currentQuestion = 0;
@@ -13,7 +14,7 @@ let score = 0;
 let timer;
 let timeLeft;
 let markedPosition = null;
-let selectedAnswer = null; // Kullanıcının seçtiği cevabı tutar
+let selectedAnswer = null;
 
 const quizData = {
             1: [
@@ -226,134 +227,82 @@ const quizData = {
 
         };
 function loadQuestion() {
+    clearInterval(timer);
     const question = quizData[currentLevel][currentQuestion];
     questionImage.src = question.image;
     optionsContainer.innerHTML = '';
-    markedPosition = null; // İşaretlemeyi sıfırlıyoruz
-    selectedAnswer = null; // Cevap sıfırlanıyor
-
-    // Yeni soruya geçildiğinde, önceki işaretlemeyi temizliyoruz
+    markedPosition = null;
+    selectedAnswer = null;
     clearPreviousMark();
 
     question.options.forEach(option => {
         const optionButton = document.createElement('button');
         optionButton.classList.add('option-button', 'bg-gray-200', 'hover:bg-blue-400', 'transition', 'p-3', 'rounded-lg', 'cursor-pointer');
         optionButton.textContent = option;
-
-        optionButton.addEventListener('click', () => {
-            selectAnswer(optionButton, option);
-        });
-
+        optionButton.addEventListener('click', () => selectAnswer(optionButton, option));
         optionsContainer.appendChild(optionButton);
     });
+const progressCounter = document.getElementById('progress-counter');
+    progressCounter.textContent = `${currentQuestion + 1}/${quizData[currentLevel].length} tamamlandı`; // İlerleme sayacını güncelle
 
-    questionImage.addEventListener('click', (event) => markOnImage(event)); // Resme tıklanması durumunda işaretleme yapılacak
+    questionImage.addEventListener('click', markOnImage);
     startTimer();
 }
-const timerButton = document.getElementById('timer-button'); // Zamanlayıcıyı barındıracak buton
 
 function startTimer() {
-    timeLeft = 25; // 25 saniye
-    updateTimerButton(timeLeft); // Başlangıç zamanını butona yazdırıyoruz
-
-    // Timer'ı her saniye güncelliyoruz
+    timeLeft = 25;
+    updateTimerButton(timeLeft);
     timer = setInterval(() => {
-        timeLeft--; // Zamanı bir azaltıyoruz
-        updateTimerButton(timeLeft); // Ekranda gösteriyoruz
-
-        // Son 10 saniye için yanıp sönme efekti
+        timeLeft--;
+        updateTimerButton(timeLeft);
         if (timeLeft <= 10) {
-            timerButton.classList.add('flashing'); // Yanıp sönme efekti ekliyoruz
+            timerButton.classList.add('flashing');
         } else {
-            timerButton.classList.remove('flashing'); // Yanıp sönme efekti kaldırıyoruz
+            timerButton.classList.remove('flashing');
         }
-
         if (timeLeft <= 0) {
-            clearInterval(timer); // Zaman bitince timer'ı temizliyoruz
-            nextQuestion(); // Otomatik olarak bir sonraki soruya geçiyoruz
+            clearInterval(timer);
+            nextQuestion();
         }
-    }, 1000); // 1000 ms = 1 saniye
+    }, 1000);
 }
 
-// Zamanlayıcıyı buton üzerinde güncelleyen fonksiyon
 function updateTimerButton(timeLeft) {
-    timerButton.textContent = timeLeft; // Butonun içindeki yazıyı güncelliyoruz
-
+    timerButton.textContent = timeLeft;
     if (timeLeft <= 10) {
-        timerButton.style.backgroundColor = '#e74c3c'; // Kırmızı tonunda bir arka plan
+        timerButton.style.backgroundColor = '#e74c3c';
     } else {
-        timerButton.style.backgroundColor = '#3498db'; // Normalde mavi
+        timerButton.style.backgroundColor = '#3498db';
     }
 }
 
-// Soruları yüklerken eski zamanlayıcıyı temizleme
-function loadQuestion() {
-    clearInterval(timer); // Eski zamanlayıcıyı temizliyoruz
-    const question = quizData[currentLevel][currentQuestion];
-    questionImage.src = question.image;
-    optionsContainer.innerHTML = '';
-    markedPosition = null; // İşaretlemeyi sıfırlıyoruz
-    selectedAnswer = null; // Cevap sıfırlanıyor
-
-    // Yeni soruya geçildiğinde, önceki işaretlemeyi temizliyoruz
-    clearPreviousMark();
-
-    question.options.forEach(option => {
-        const optionButton = document.createElement('button');
-        optionButton.classList.add('option-button', 'bg-gray-200', 'hover:bg-blue-400', 'transition', 'p-3', 'rounded-lg', 'cursor-pointer');
-        optionButton.textContent = option;
-
-        optionButton.addEventListener('click', () => {
-            selectAnswer(optionButton, option);
-        });
-
-        optionsContainer.appendChild(optionButton);
-    });
-
-    questionImage.addEventListener('click', (event) => markOnImage(event)); // Resme tıklanması durumunda işaretleme yapılacak
-    startTimer(); // Yeni soruya başlamadan önce zamanlayıcıyı başlatıyoruz
-}
-
-// Cevap seçim fonksiyonu
 function selectAnswer(button, answer) {
-    selectedAnswer = answer; // Seçilen cevabı kaydediyoruz
+    selectedAnswer = answer;
+    button.style.backgroundColor = '#FFA500';
 
-    // Seçilen cevabın butonunun rengini turuncuya çeviriyoruz
-    button.style.backgroundColor = '#FFA500'; // Turuncu rengi
+    const correctAnswer = quizData[currentLevel][currentQuestion].answer;
 
-    // Eğer "Bagaj TEMİZ" seçildiyse, hemen sonraki soruya geçiyoruz
-    if (selectedAnswer === 'Bagaj TEMİZ') {
+    if (selectedAnswer === correctAnswer) {
+        score += 5; // Puan sistemine göre artır
         nextQuestion();
     } else {
-        // Diğer seçeneklerde işaretleme yapılması gerektiğini bildiriyoruz
-        Swal.fire({
-            title: 'İşaretleme Yapınız',
-            text: 'Lütfen resim üzerinde doğru alanı işaretleyin!',
-            icon: 'info',
-            showCancelButton: false,
-            confirmButtonText: 'Tamam'
-        });
+        Swal.fire('İşaretleme Yapınız', 'Lütfen resim üzerinde doğru alanı işaretleyin!', 'info');
     }
 }
 
-// Resim üzerine işaretleme yapılacak
 function markOnImage(event) {
-    // Eğer cevap seçilmemişse, işaretleme yapılmasın
     if (!selectedAnswer) {
         return;
     }
 
-    // Resmin iç koordinatlarını almak
     const rect = questionImage.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    // Eğer önceki işaret varsa onu kaldırıyoruz
     if (markedPosition) {
         markedPosition.remove();
     }
 
-    // Yeni işaret ekliyoruz
     const marker = document.createElement('div');
     marker.classList.add('marker');
     marker.style.left = `${x}px`;
@@ -362,7 +311,7 @@ function markOnImage(event) {
     marker.style.width = '20px';
     marker.style.height = '20px';
     marker.style.borderRadius = '50%';
-    marker.style.backgroundColor = '#c0392b'; // Koyu kırmızı
+    marker.style.backgroundColor = '#c0392b';
     marker.style.transform = 'translate(-50%, -50%)';
     marker.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
     questionImage.parentElement.style.position = 'relative';
@@ -370,43 +319,55 @@ function markOnImage(event) {
 
     markedPosition = marker;
 
-    // İşaretleme yapıldığında, sonraki soruya geçiyoruz
     nextQuestion();
 }
 
-// Önceki işaretlemeleri temizleme
 function clearPreviousMark() {
-    // Yeni soru yüklendiğinde, önceki işaretlemeyi temizliyoruz
     const markers = document.querySelectorAll('.marker');
-    markers.forEach(marker => marker.remove()); // Var olan tüm işaretlemeleri kaldırıyoruz
+    markers.forEach(marker => marker.remove());
 }
 
-// Sonraki soruya geçme fonksiyonu
 function nextQuestion() {
     currentQuestion++;
     setTimeout(() => {
         if (currentQuestion < quizData[currentLevel].length) {
-            loadQuestion(); // Yeni soruyu yükle
+            loadQuestion();
         } else {
             showLevelUpButton();
         }
-    }, 1500); // 1.5 saniye sonra yeni soru
+    }, 1400);
 }
 
-// Seviye geçişi için buton gösterme
 function showLevelUpButton() {
+    levelUpContainer.innerHTML = ''; 
+    Swal.fire(`Puanınız: ${score}`, `Seviyeyi geçmek için en az 70 puan gerekli.`, 'info');
+
     if (score >= 70) {
         Swal.fire('Seviye Geçildi!', 'Başarıyla bu seviyeyi tamamladınız!', 'success');
-        levelUpButton.disabled = false;
+        const levelUpButton = document.createElement('button');
+        levelUpButton.textContent = 'Sonraki Seviye';
+        levelUpButton.classList.add('level-up-button', 'bg-green-500', 'hover:bg-green-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded');
         levelUpButton.addEventListener('click', levelUp);
+        levelUpContainer.appendChild(levelUpButton);
     } else {
         Swal.fire('Başarısız!', 'Bu seviyeyi geçemediniz, tekrar deneyin.', 'error');
-        levelUpButton.disabled = true;
+        const tryAgainButton = document.createElement('button');
+        tryAgainButton.textContent = 'Tekrar Dene';
+        tryAgainButton.classList.add('try-again-button', 'bg-red-500', 'hover:bg-red-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded');
+        tryAgainButton.addEventListener('click', () => {
+            currentQuestion = 0;
+            score = 0; // Yeniden başladığında puanı sıfırla
+            loadQuestion();
+        });
+        levelUpContainer.appendChild(tryAgainButton);
     }
     levelUpContainer.classList.remove('hidden');
 }
 
-// Seviye atlama fonksiyonu
+questionImage.addEventListener('click', markOnImage);
+
+loadQuestion();
+
 function levelUp() {
     currentLevel++;
     currentQuestion = 0;
@@ -416,4 +377,12 @@ function levelUp() {
     loadQuestion();
 }
 
-loadQuestion(); // İlk soruyu yükle
+// Sınavı Bitir Butonu İşlevselliği
+finishQuizButton.addEventListener('click', () => {
+    clearInterval(timer);
+    Swal.fire('Sınav Bitirildi!', 'Sınavı başarıyla tamamladınız!', 'info').then(() => {
+        window.location.href = "thankyou.html"; // Başka bir sayfaya yönlendir
+    });
+});
+
+loadQuestion();
