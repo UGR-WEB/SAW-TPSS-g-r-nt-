@@ -21,32 +21,32 @@ const quizData = {
                 {
                     image: 'images/level1/resim-1.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-2.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-3.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-4.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-5.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-6.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-7.png',
@@ -61,7 +61,7 @@ const quizData = {
 {
                     image: 'images/level1/resim-9.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-10.png',
@@ -76,17 +76,17 @@ const quizData = {
 {
                     image: 'images/level1/resim-12.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-13.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-14.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-15.png',
@@ -106,17 +106,17 @@ const quizData = {
 {
                     image: 'images/level1/resim-18.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-19.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level1/resim-20.png',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
                 // Diğer sorular...
             ],
@@ -125,12 +125,12 @@ const quizData = {
                 {
                     image: 'images/level2/resim-1.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-2.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-3.jpg',
@@ -140,42 +140,42 @@ const quizData = {
 {
                     image: 'images/level2/resim-4.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-5.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-6.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-7.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-8.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-9.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-10.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-11.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-12.jpg',
@@ -185,7 +185,7 @@ const quizData = {
 {
                     image: 'images/level2/resim-13.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-14.jpg',
@@ -195,7 +195,7 @@ const quizData = {
 {
                     image: 'images/level2/resim-15.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-16.jpg',
@@ -210,7 +210,7 @@ const quizData = {
 {
                     image: 'images/level2/resim-18.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
 {
                     image: 'images/level2/resim-19.jpg',
@@ -220,7 +220,7 @@ const quizData = {
 {
                     image: 'images/level2/resim-20.jpg',
                     options: ['Bagaj KİRLİ', 'Bagaj TEMİZ', 'Tanımsız Alan BULUNMAKTADIR'],
-                    answer: 'Bagaj TEMİZ'
+                    answer: 'Bagaj KİRLİ'
                 },
                 // Diğer sorular...
             ],
