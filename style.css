@@ -16,6 +16,9 @@ body {
     width: 90%;
     max-width: 400px;
     transition: transform 0.3s;
+display: flex;
+    flex-direction: column; /* Dikey hizalama */
+    align-items: center; /* Yatay ortalama */
 }
 
 #quiz-container:hover {
@@ -49,6 +52,7 @@ body {
     color: #e74c3c;
     text-align: center;
     margin-top: 10px;
+margin-top: 10px; /* Resimle arayı açmak için */
 }
 
 #question-image {
